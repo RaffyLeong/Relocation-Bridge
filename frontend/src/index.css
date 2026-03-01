@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+   /* Deep Green - Primary */
+  --color-primary-500: #1B4D3E;  /* Deep forest green */
+  --color-primary-600: #143A2F;  /* Darker for hover */
+  --color-primary-400: #2A6B58;  /* Lighter for accents */
+  --color-primary-50: #E8F3EF;   /* Very light for backgrounds */
+  
+  /* Warm Sand - Secondary */
+  --color-secondary-500: #E6B17E;  /* Warm sand */
+  --color-secondary-600: #D49C67;  /* Darker for hover */
+  --color-secondary-400: #F0C69B;  /* Lighter for accents */
+  --color-secondary-50: #FDF1E6;   /* Very light for backgrounds */
+  
+  /* Neutral */
+  --color-dark: #2D3E4F;      /* Dark text */
+  --color-gray: #6B7280;      /* Secondary text */
+  --color-light: #F9F7F4;     /* Background */
+  --color-white: #FFFFFF;      /* White */
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.delay-1000 {
+  animation-delay: 1s;
+}
