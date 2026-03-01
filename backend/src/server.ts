@@ -18,14 +18,20 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'Test server working!' });
 });
 
+// Health check route (for Render)
+app.get('/', (req, res) => {
+  res.send('✅ Relocation Bridge API is healthy');
+});
+
+// Set up routes ONCE (outside the mongoose connection)
+app.use('/api/history', historyRoutes);
+
+
 // Connect to MongoDB first, THEN start server
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/relocation-bridge')
 .then(() => {
   console.log("✅ Connected to MongoDB")
-  
-  // Routes - use the actual history routes
-  app.use('/api/history', historyRoutes);
-  
+
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
     console.log(`Test: http://localhost:${PORT}/api/test`);
@@ -34,18 +40,11 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/relocatio
 })
 .catch(err => {
   console.error('❌ MongoDB connection error:', err)
-  // Still start server even if DB fails?
-  app.use('/api/history', historyRoutes);
+
   app.listen(PORT, () => {
     console.log(`⚠️ Server running without DB on http://localhost:${PORT}`);
   });
 })
 
 
-// Routes
-app.use('/api/history', historyRoutes);
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
 
