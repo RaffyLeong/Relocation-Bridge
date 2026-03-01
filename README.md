@@ -2,7 +2,7 @@
 
 A React application that helps professionals compare role, relocation costs, salaries, and visa options when moving from Asia to the UK. Built with a 4-step workflow providing personalized financial insights based on real data.
 
-[Live Demo](https://job-analyzer.netlify.app/) | [Video Demo](https://www.loom.com/share/f7a196256af94299a33eedfcec368549)
+[Live Demo](https://relocation-bridge.netlify.app/)
 
 ## 📸 Application Preview
 <img width="1902" height="926" alt="Screenshot 2026-03-01 at 6 24 57 PM" src="https://github.com/user-attachments/assets/570e1a6e-06ea-48bc-b3b5-7aae7dac9834" />
