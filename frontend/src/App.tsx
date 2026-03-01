@@ -18,40 +18,10 @@ function App() {
   const [ showHome, setShowHome ] = useState(false)
   const [currentStep, setCurrentStep] = useState(3);
 
-  const [userProfile, setUserProfile] = useState<UserProfile | null>({
-    currentRole: 'Product Manager', targetRole: 'Frontend Developer',
-    currentCity: 'Macau', targetCity: 'London'
-  });
-
-  const [salaryData, setSalaryData] = useState<SalaryData | null>({
-    currentAmount: 360000, currentFrequency: 'Annually', currentCurrency: 'MOP',
-    targetAmount: 65000,
-    targetFrequency: 'Annually',
-    targetCurrency: '£'
-  });
-  const [costData, setCostData] = useState<CostData | null>(
-    {
-    currentRent: 12000,
-    currentTransport: 300,
-    currentFood: 2700,
-    currentTotal: 15000,
-    currentCurrency: 'MOP',
-    targetRent: 1800,
-    targetTransport: 150,
-    targetFood: 550,
-    targetTotal: 2500,
-    targetCurrency: '£'
-  }
-  );
-  const [visaData, setVisaData] = useState<VisaData | null>(
-    {
-    selectedVisaName: 'Skilled Worker Visa',
-    selectedVisaTimeline: '3-8 weeks',
-    selectedVisaCost: '£3,800 - £6,800',
-    selectedVisaRequirements: ['Job offer', 'English language B2', 'Salary threshold'],
-    isSettledStatus: false
-  }
-  );
+  const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+  const [salaryData, setSalaryData] = useState<SalaryData | null>(null);
+  const [costData, setCostData] = useState<CostData | null>(null);
+  const [visaData, setVisaData] = useState<VisaData | null>(null);
 
   // handle save the history data
   const [savedComparisons, setSavedComparisons] = useState<SavedComparison[]>([])
