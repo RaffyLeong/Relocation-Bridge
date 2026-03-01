@@ -15,7 +15,7 @@ import { api } from './services/api';
 
 
 function App() {
-  const [ showHome, setShowHome ] = useState(false)
+  const [ showHome, setShowHome ] = useState(true)
   const [currentStep, setCurrentStep] = useState(1);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [salaryData, setSalaryData] = useState<SalaryData | null>(null);
