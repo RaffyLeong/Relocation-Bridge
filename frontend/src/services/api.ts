@@ -1,4 +1,6 @@
-const API_URL = 'http://localhost:5001/api';
+const API_URL = import.meta.env.PROD 
+? 'https://relocation-bridge.onrender.com/api'
+: 'http://localhost:5001/api'
 
 export const api = {
   // Get all history
