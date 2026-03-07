@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { roles } from '../../data/roles';
 import { cities } from '../../data/cities';
 import { ukCities } from '../../data/ukCities';
@@ -6,13 +6,23 @@ import { type UserProfile } from '../../types';
 
 interface Step1Props {
   onComplete: (profile: UserProfile) => void;
+  initialData?: UserProfile | null;
 }
 
-export function Step1({ onComplete }: Step1Props) {
+export function Step1({ onComplete, initialData }: Step1Props) {
   const [currentRole, setCurrentRole] = useState('');
   const [targetRole, setTargetRole] = useState('');
   const [currentCity, setCurrentCity] = useState('');
   const [targetCity, setTargetCity] = useState('London');
+
+  useEffect(() => {
+    if (initialData) {
+      setCurrentRole(initialData.currentRole);
+      setTargetRole(initialData.targetRole);
+      setCurrentCity(initialData.currentCity);
+      setTargetCity(initialData.targetCity);
+    }
+  }, [initialData]);
 
  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

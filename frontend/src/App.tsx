@@ -219,7 +219,10 @@ function App() {
             {/* Step Content */}
             <div className="mt-20 animate-fade-in">
               {currentStep === 1 && (
-                <Step1 onComplete={handleProfileComplete} />
+                <Step1 onComplete={handleProfileComplete} 
+                initialData={userProfile}
+                />
+                
               )}
               
               {currentStep === 2 && userProfile && (
@@ -227,6 +230,9 @@ function App() {
                   profile={userProfile} 
                   onNext={handleComparisonComplete}
                   onBack={() => setCurrentStep(1)}
+                  initialSalary={salaryData}
+                  initialCost={costData}
+                  initialVisa={visaData}
                 />
               )}
               

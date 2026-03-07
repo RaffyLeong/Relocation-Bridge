@@ -12,6 +12,9 @@ interface Step2Props {
     visa: VisaData | null
   }) => void;
   onBack: () => void;
+  initialSalary?: SalaryData | null;
+  initialCost?: CostData | null;
+  initialVisa?: VisaData | null;
 }
 
 const currencySymbol: Record<string, string> = {
@@ -50,32 +53,32 @@ const calculateLivingCost = (
   return rent + transport + food;
 };
 
-export function Step2({ profile, onNext, onBack }: Step2Props) {
+export function Step2({ profile, onNext, onBack, initialSalary, initialCost, initialVisa  }: Step2Props) {
   const [activeTab, setActiveTab] = useState("salary");
 
   // salary state for current salary
   const [currentSalary, setCurrentSalary] = useState({
-    frequency: "Annually",
-    amount: 0,
+    frequency: initialSalary?.currentCurrency || "Annually",
+    amount: initialSalary?.currentAmount || 0,
   });
   // salary state for relocation salary
   const [targetSalary, setTargetSalary] = useState({
-    frequency: "Annually",
-    amount: 0,
+    frequency: initialSalary?.targetFrequency || "Annually",
+    amount: initialSalary?.targetAmount || 0,
   });
 
   // Living Cost for Current Cost
   const [currentCost, setCurrentCost] = useState({
-    rent: 0,
-    transport: 0,
-    food: 0,
+    rent: initialCost?.currentRent || 0,
+    transport: initialCost?.currentTransport || 0,
+    food: initialCost?.currentFood || 0,
   });
 
   // Living Cost for targetCost
   const [targetCost, setTargetCost] = useState({
-    rent: 0,
-    transport: 0,
-    food: 0,
+    rent: initialCost?.targetRent || 0,
+    transport: initialCost?.targetTransport || 0,
+    food: initialCost?.targetFood || 0,
   });
 
   const targetData = getMockDataForCity(profile.targetCity, profile.targetRole);
@@ -104,7 +107,15 @@ export function Step2({ profile, onNext, onBack }: Step2Props) {
     targetCost.food,
   );
 
-  const [selectedVisa, setSelectedVisa] = useState<number | null>(null);
+  const [selectedVisa, setSelectedVisa] = useState<number | null>(() => {
+    if(initialVisa?.selectedVisaName) {
+      const index = targetData.visaOptions.findIndex(
+        v => v.name === initialVisa.selectedVisaName
+      )
+      return index !== -1 ? index : null
+    }
+    return null
+  });
 
   // this part is for handle the data get pass to step 3 
   const handleNext = () => {
